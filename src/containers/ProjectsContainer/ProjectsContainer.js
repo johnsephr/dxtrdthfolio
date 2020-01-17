@@ -1,6 +1,10 @@
 import React, { Fragment } from 'react'
 
 // Components
+import Project from '../../components/Custom/Project/Project'
+
+// data
+import projects from '../../data/projects.js'
 
 // MUI
 import { Typography, Grid } from '@material-ui/core'
@@ -10,39 +14,37 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(theme => ({
     // styles go here
     root: {},
-    grid: {
-        padding: 15
-    },
-    text: {
-        flexGrow: 1,
-        padding: 15
+    header: {
+        width: '100%',
+        textAlign: 'center',
+        opacity: .6,
+        padding: '20px 0'
     }
 }))
 
 const ProjectsContainer = props => {
     const classes = useStyles(props)
     return (
-        <Fragment>
-            <div>yello issa projects container</div>
-
-            {/* <Grid
+        <div>
+            <Grid
                 container
                 direction='row'
                 alignContent='center'
                 spacing={1}
                 className={classes.grid}
             >
-                <Grid item xs={6}>
+                <Grid item xs={5} />
+                <Grid item xs={2}>
+                    <Typography variant="h4" className={classes.header}>
+                        Projects
+                    </Typography>
                 </Grid>
-
-                <Grid item xs={12}>
-                </Grid>
-
-                <Grid item xs={12}>
-                </Grid>
-
-            </Grid> */}
-        </Fragment>
+                <Grid item xs={5} />
+            </Grid>
+            {projects.map((project, index, array) => {
+                return <Project project={project} key={index} index={index} />
+            })}
+        </div>
     )
 }
 

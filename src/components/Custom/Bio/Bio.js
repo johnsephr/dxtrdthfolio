@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     // styles go here
     root: {},
     text: {
-        padding: '200px',
+        padding: '650px',
         textAlign: 'center',
     }
 }))

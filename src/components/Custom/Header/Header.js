@@ -9,6 +9,8 @@ import { makeStyles } from '@material-ui/core/styles'
 // Styles
 const useStyles = makeStyles(theme => ({
     root: {
+        position: 'absolute',
+        top: 0,
         background: 'transparent',
         boxShadow: 'none'
     },
@@ -28,28 +30,9 @@ const Header = props => {
                 color='primary'
                 className={classes.root}
             >
-                    <Typography variant="h4" className={classes.name}>
-                        John Ramsey
-                    </Typography>
-
-
-                {/* <Toolbar>
-                    <Link to="/" className={classes.link}>
-                        <Typography variant="h6">
-                            Home
-                        </Typography>
-                    </Link>
-                    <Link to="/about" className={classes.link}>
-                        <Typography variant="h6">
-                            About
-                        </Typography>
-                    </Link>
-                    <Link to="/login" className={classes.link}>
-                        <Typography variant="h6">
-                            Login
-                        </Typography>
-                    </Link>
-                </Toolbar> */}
+                <Typography variant="h4" className={classes.name}>
+                    John Ramsey
+                </Typography>
             </AppBar>
         </Fragment>
     )

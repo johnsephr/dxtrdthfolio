@@ -15,6 +15,13 @@ import pressProviderWeb from '../../../images/press-provider-web.png'
 import pressProviderMobile from '../../../images/press-provider-mobile.png'
 import rhcConsultingWeb from '../../../images/rhc-consulting-web.png'
 import rhcConsultingMobile from '../../../images/rhc-consulting-mobile.png'
+import calculatorWeb from '../../../images/calc-web.png'
+import calculatorMobile from '../../../images/calc-mobile.png'
+import awesomeJobsWeb from '../../../images/awesome-jobs-web.png'
+import awesomeJobsMobile from '../../../images/awesome-jobs-mobile.png'
+import ecommerceWeb from '../../../images/ecommerce-web.png'
+import ecommerceMobile from '../../../images/ecommerce-mobile.png'
+
 
 // Styles
 const useStyles = makeStyles(theme => ({
@@ -79,14 +86,14 @@ const useStyles = makeStyles(theme => ({
 
 const Project = props => {
     const classes = useStyles(props)
-    const { job, index } = props
-    const { title, roles, summary } = job
+    const { project, index } = props
+    const { title, roles, summary, image } = project
     const [webImage, setWebImage] = useState(null)
     const [mobileImage, setMobileImage] = useState(null)
 
     // Component Did Mount
     useEffect(() => {
-        switch (job.image) {
+        switch (image) {
             // case 'harmony':
             //     setWebImage(harmonyWeb)
             //     setMobileImage(harmonyMobile)
@@ -111,6 +118,17 @@ const Project = props => {
                 setWebImage(rhcConsultingWeb)
                 setMobileImage(rhcConsultingMobile)
                 break
+            case 'calculator':
+                setWebImage(calculatorWeb)
+                setMobileImage(calculatorMobile)
+                break
+            case 'awesome-jobs':
+                setWebImage(awesomeJobsWeb)
+                setMobileImage(awesomeJobsMobile)
+                break
+            case 'ecommerce':
+                setWebImage(ecommerceWeb)
+                setMobileImage(ecommerceMobile)
             default:
                 console.log('couldn\'t find an image')
         }
@@ -127,7 +145,7 @@ const Project = props => {
                     className={classes.grid}
                 >
                     <Grid item xs={5} className={classes.grid} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        {job.image && <div className={classes.imagesContainer}>
+                        {project.image && <div className={classes.imagesContainer}>
                             <div className={classes.webImage}>
                                 <img src={webImage} width="auto" height="375px" />
                             </div>
@@ -172,7 +190,7 @@ const Project = props => {
                     </Grid>
                     <Grid item xs={2} />
                     <Grid item xs={5} className={classes.grid} style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                        {job.image && <div className={classes.imagesContainer}>
+                        {project.image && <div className={classes.imagesContainer}>
                             <div className={classes.webImage}>
                                 <img src={webImage} width="auto" height="375px" />
                             </div>
