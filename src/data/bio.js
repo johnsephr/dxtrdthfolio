@@ -1,3 +1,3 @@
-const bio = "yeallo heeya bio"
+const bio = "bio"
 
 export default bio

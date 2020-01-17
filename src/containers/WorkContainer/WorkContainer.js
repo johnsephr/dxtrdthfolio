@@ -28,7 +28,7 @@ const WorkContainer = props => {
     return (
         <div>
            {work.map((job, index, array) => {
-               return <Project job={job} key={index} />
+               return <Project job={job} key={index} index={index} />
            })}
         </div>
     )

@@ -27,11 +27,12 @@ const useStyles = makeStyles(theme => ({
     },
     grid: {
         display: 'flex',
-        justifyContent: 'center'
+        // justifyContent: 'center'
     },
     imagesContainer: {
         display: 'inline-block',
-        position: 'relative'
+        position: 'relative',
+        transform: 'translateY(7.5px)'
     },
     webImage: {
         display: 'inline-block',
@@ -63,12 +64,23 @@ const useStyles = makeStyles(theme => ({
     //     right: 0,
     //     borderBottom: '1px solid #f9f9f9'
     //     background: 'radial-gradient(60% 25px at 50% bottom, rgba(0, 0, 0, .12), rgba(0, 0, 0, .08) 50%, rgba(0, 0, 0, .07) 60%, rgba(0, 0, 0, .06) 70%, rgba(0, 0, 0, .03) 75%, rgba(0, 0, 0, .01) 80%, rgba(0, 0, 0, .005) 85%, rgba(0, 0, 0, .0025) 90%, transparent)'
-    // }
+    // },
+    title: {
+        margin: '5px 0'
+    },
+    roles: {
+        margin: '5px 0',
+        opacity: .6
+    },
+    summary: {
+        margin: '5px 0'
+    }
 }))
 
 const Project = props => {
     const classes = useStyles(props)
-    const { job } = props
+    const { job, index } = props
+    const { title, roles, summary } = job
     const [webImage, setWebImage] = useState(null)
     const [mobileImage, setMobileImage] = useState(null)
 
@@ -106,30 +118,70 @@ const Project = props => {
 
     return (
         <div className={classes.root}>
-            <Grid
-                container
-                direction='row'
-                alignContent='center'
-                spacing={1}
-                className={classes.grid}
-            >
-                <Grid item xs={6} className={classes.grid}>
-
-                    {job.image && <div className={classes.imagesContainer}>
-                        <div className={classes.webImage}>
-                            <img src={webImage} width="auto" height="375px" />
+            {index === 0 || index % 2 === 0 ?
+                <Grid
+                    container
+                    direction='row'
+                    alignContent='center'
+                    spacing={1}
+                    className={classes.grid}
+                >
+                    <Grid item xs={5} className={classes.grid} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        {job.image && <div className={classes.imagesContainer}>
+                            <div className={classes.webImage}>
+                                <img src={webImage} width="auto" height="375px" />
+                            </div>
+                            <div className={classes.mobileImage}>
+                                <img src={mobileImage} width="auto" height="250px" />
+                            </div>
+                        </div>}
+                    </Grid>
+                    <Grid item xs={2} />
+                    <Grid item xs={5} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+                        <div style={{ maxWidth: '75%', marginleft: 'auto' }}>
+                            <Typography variant="h4" className={classes.title}>
+                                {title}
+                            </Typography>
+                            <Typography variant="h6" className={classes.roles}>
+                                {roles}
+                            </Typography>
+                            <Typography variant="body1" className={classes.summary}>
+                                {summary}
+                            </Typography>
                         </div>
-                        <div className={classes.mobileImage}>
-                            <img src={mobileImage} width="auto" height="250px" />
+                    </Grid>
+                </Grid> : <Grid
+                    container
+                    direction='row'
+                    alignContent='center'
+                    spacing={1}
+                    className={classes.grid}
+                >
+                    <Grid item xs={5} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+                        <div style={{ maxWidth: '75%' }}>
+                            <Typography variant="h4" className={classes.title} style={{ textAlign: 'right' }}>
+                                {title}
+                            </Typography>
+                            <Typography variant="h6" className={classes.roles} style={{ textAlign: 'right' }}>
+                                {roles}
+                            </Typography>
+                            <Typography variant="body1" className={classes.summary} style={{ textAlign: 'right' }}>
+                                {summary}
+                            </Typography>
                         </div>
-                    </div>}
-                </Grid>
-                <Grid item xs={6}>
-                    <Typography variant="h6" className={classes.text}>
-                        {job.title}
-                    </Typography>
-                </Grid>
-            </Grid>
+                    </Grid>
+                    <Grid item xs={2} />
+                    <Grid item xs={5} className={classes.grid} style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                        {job.image && <div className={classes.imagesContainer}>
+                            <div className={classes.webImage}>
+                                <img src={webImage} width="auto" height="375px" />
+                            </div>
+                            <div className={classes.mobileImage}>
+                                <img src={mobileImage} width="auto" height="250px" />
+                            </div>
+                        </div>}
+                    </Grid>
+                </Grid>}
         </div>
     )
 }

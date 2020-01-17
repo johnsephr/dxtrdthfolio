@@ -45,7 +45,13 @@ export const restOfTheme = {
     breakpoints: {
         keys: ['xs', 'sm', 'md', 'lg', 'xl'],
         up: key => `@media (min-width:${breakpoints[key]}px)`,
-    }
+    },
+    typography: {
+        fontFamily: [
+            "Open Sans",
+            "sans-serif"
+        ].join(','),
+    },
 }
 
 

@@ -28,7 +28,7 @@ const Header = props => {
                 color='primary'
                 className={classes.root}
             >
-                    <Typography variant="h3" className={classes.name}>
+                    <Typography variant="h4" className={classes.name}>
                         John Ramsey
                     </Typography>
 
