@@ -7,8 +7,10 @@
     "@material-ui/icons": "^4.5.1",
     "@material-ui/styles": "^4.5.0",
     "@material-ui/system": "^4.5.1",
+    "animate.css": "^3.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-media-hook": "^0.4.4",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "react-spinners": "^0.6.1"

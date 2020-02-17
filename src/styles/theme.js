@@ -52,6 +52,12 @@ export const restOfTheme = {
             "sans-serif"
         ].join(','),
     },
+    overrides: {
+        // Style sheet name ⚛️
+        '.Mui-focused': {
+            borderBottom: '2px solid red'
+        }
+      }
 }
 
 

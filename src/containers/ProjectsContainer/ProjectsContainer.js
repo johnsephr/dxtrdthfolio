@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react'
+import { useMediaPredicate } from "react-media-hook"
 
 // Components
 import Project from '../../components/Custom/Project/Project'
+import ProjectMobile from '../../components/Custom/Project/ProjectMobile'
 
 // data
 import projects from '../../data/projects.js'
@@ -24,6 +26,9 @@ const useStyles = makeStyles(theme => ({
 
 const ProjectsContainer = props => {
     const classes = useStyles(props)
+    const biggerThan1450 = useMediaPredicate("(min-width: 1450px)")
+    const smallerThan450 = useMediaPredicate("(max-width: 450px)")
+
     return (
         <div>
             <Grid
@@ -33,17 +38,31 @@ const ProjectsContainer = props => {
                 spacing={1}
                 className={classes.grid}
             >
-                <Grid item xs={5} />
-                <Grid item xs={2}>
-                    <Typography variant="h4" className={classes.header}>
-                        Projects
+                {biggerThan1450 ? <Fragment>
+                    <Grid item xs={5} />
+                    <Grid item xs={2}>
+                        <Typography variant="h4" className={classes.header}>
+                            Projects
                     </Typography>
-                </Grid>
-                <Grid item xs={5} />
+                    </Grid>
+                    <Grid item xs={5} />
+                </Fragment> : <Grid item xs={12}>
+                        {smallerThan450 ? <Typography className={classes.header} style={{ fontSize: '1.75rem' }}>
+                            Projects
+                    </Typography> : <Typography variant="h4" className={classes.header}>
+                                Projects
+                    </Typography>}
+                    </Grid>}
             </Grid>
-            {projects.map((project, index, array) => {
-                return <Project project={project} key={index} index={index} />
-            })}
+            {biggerThan1450 ? <div>
+                {projects.map((project, index, array) => {
+                    return <Project project={project} key={index} index={index} />
+                })}
+            </div> : <div>
+                    {projects.map((project, index, array) => {
+                        return <ProjectMobile project={project} key={index} index={index} array={array} />
+                    })}
+                </div>}
         </div>
     )
 }

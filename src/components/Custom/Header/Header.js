@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
+import { useMediaPredicate } from "react-media-hook"
 import { Link } from "react-router-dom"
+
 
 // MUI
 import { AppBar, Toolbar, Typography } from '@material-ui/core'
@@ -16,13 +18,21 @@ const useStyles = makeStyles(theme => ({
     },
     name: {
         color: '#555',
-        padding: '30px',
-        paddingLeft: '80px'
-    }
+        padding: '30px 0',
+        margin: '0 5%',
+    },
+    nameCenter: {
+        color: '#555',
+        padding: '30px 0',
+        margin: '0 5%',
+        textAlign: 'center'
+    },
 }))
 
 const Header = props => {
     const classes = useStyles(props)
+    const smallerThan1450 = useMediaPredicate("(max-width: 1450px)")
+    const smallerThan450 = useMediaPredicate("(max-width: 450px)")
     return (
         <Fragment>
             <AppBar
@@ -30,9 +40,13 @@ const Header = props => {
                 color='primary'
                 className={classes.root}
             >
-                <Typography variant="h4" className={classes.name}>
+                {smallerThan450 ? <Typography className={classes.nameCenter} style={{ fontSize: '1.75rem' }}>
                     John Ramsey
-                </Typography>
+                </Typography> : smallerThan1450 ? <Typography variant="h4" className={classes.nameCenter}>
+                    John Ramsey
+                </Typography> : <Typography variant="h4" className={classes.name}>
+                    John Ramsey
+                </Typography>}
             </AppBar>
         </Fragment>
     )

@@ -1,5 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react'
 
+// Components
+import Image from '../Utility/Image/Image'
+
 // MUI
 import { Typography, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -39,28 +42,34 @@ const useStyles = makeStyles(theme => ({
     imagesContainer: {
         display: 'inline-block',
         position: 'relative',
-        transform: 'translateY(7.5px)'
+        // transform: 'translateY(7.5px)',
+        width: '100%',
+        height: '100%'
     },
-    webImage: {
-        display: 'inline-block',
-        height: '375px',
-        width: 'auto',
+    // webImage: {
+    //     display: 'inline-block',
+    //     height: '100%',
+    //     width: '100%',
+    //     borderRadius: '3px',
+    //     boxShadow: '0 0 10px 4px rgba(0, 0, 0, .18)',
+    //     background: 'transparent',
+    //     overflow: 'hidden',
+    //     transform: 'translateY(-5px)'
+    // },
+    // mobileImage: {
+    //     position: 'absolute',
+    //     height: 'auto',
+    //     left: '-20px',
+    //     bottom: '-10px',
+    //     width: '20%',
+    //     borderRadius: '3px',
+    //     overflow: 'hidden',
+    //     boxShadow: '0 0 10px 4px rgba(0, 0, 0, .18)',
+    //     background: 'transparent'
+    // },
+    image: {
         borderRadius: '3px',
         boxShadow: '0 0 10px 4px rgba(0, 0, 0, .18)',
-        background: 'transparent',
-        overflow: 'hidden',
-        transform: 'translateY(-5px)'
-    },
-    mobileImage: {
-        position: 'absolute',
-        height: '250px',
-        left: '-20px',
-        bottom: '-10px',
-        width: 'auto',
-        borderRadius: '3px',
-        overflow: 'hidden',
-        boxShadow: '0 0 10px 4px rgba(0, 0, 0, .18)',
-        background: 'transparent'
     },
     // gradient: {
     //     position: 'absolute',
@@ -81,6 +90,9 @@ const useStyles = makeStyles(theme => ({
     },
     summary: {
         margin: '5px 0'
+    },
+    buttons: {
+        width: '100%'
     }
 }))
 
@@ -145,18 +157,24 @@ const Project = props => {
                     className={classes.grid}
                 >
                     <Grid item xs={5} className={classes.grid} style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        {project.image && <div className={classes.imagesContainer}>
-                            <div className={classes.webImage}>
-                                <img src={webImage} width="auto" height="375px" />
-                            </div>
-                            <div className={classes.mobileImage}>
-                                <img src={mobileImage} width="auto" height="250px" />
-                            </div>
+                        {project.image && <div className={classes.imagesContainer} style={{ transform: 'translateX(15px)' }}>
+                            {/* <div className={classes.webImage}> */}
+                                {/* <Image src={webImage} height="100%" width="100%" /> */}
+                                <img src={webImage} width="100%" height="auto" className={classes.image} />
+                            {/* </div> */}
+                            {/* <div className={classes.mobileImage}> */}
+                                {/* <Image src={mobileImage} height="101%" width="30%" /> */}
+                                <img src={mobileImage} width="20%" height="auto" className={classes.image} style={{
+                                    position: 'absolute', 
+                                    bottom: -10, 
+                                    left: -15
+                                }}/>
+                            {/* </div> */}
                         </div>}
                     </Grid>
                     <Grid item xs={2} />
                     <Grid item xs={5} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-                        <div style={{ maxWidth: '75%', marginleft: 'auto' }}>
+                        <div style={{ maxWidth: '75%', marginleft: 'auto', transform: 'translateX(-15px)' }}>
                             <Typography variant="h4" className={classes.title}>
                                 {title}
                             </Typography>
@@ -166,6 +184,10 @@ const Project = props => {
                             <Typography variant="body1" className={classes.summary}>
                                 {summary}
                             </Typography>
+                            <div className={classes.buttons}>
+                                <button>Link</button>
+                                <button>View Demo</button>
+                            </div>
                         </div>
                     </Grid>
                 </Grid> : <Grid
@@ -176,7 +198,7 @@ const Project = props => {
                     className={classes.grid}
                 >
                     <Grid item xs={5} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-                        <div style={{ maxWidth: '75%' }}>
+                        <div style={{ maxWidth: '75%', transform: 'translateX(15px)' }}>
                             <Typography variant="h4" className={classes.title} style={{ textAlign: 'right' }}>
                                 {title}
                             </Typography>
@@ -191,12 +213,18 @@ const Project = props => {
                     <Grid item xs={2} />
                     <Grid item xs={5} className={classes.grid} style={{ display: 'flex', justifyContent: 'flex-start' }}>
                         {project.image && <div className={classes.imagesContainer}>
-                            <div className={classes.webImage}>
-                                <img src={webImage} width="auto" height="375px" />
-                            </div>
-                            <div className={classes.mobileImage}>
-                                <img src={mobileImage} width="auto" height="250px" />
-                            </div>
+                            {/* <div className={classes.webImage}> */}
+                                {/* <Image src={webImage} height="auto" width="100%" /> */}
+                                <img src={webImage} width="100%" height="auto" className={classes.image}/>
+                            {/* </div> */}
+                            {/* <div className={classes.mobileImage}> */}
+                                {/* <Image src={mobileImage} height="auto" width="30%" /> */}
+                                <img src={mobileImage} width="20%" height="auto" className={classes.image} style={{
+                                    position: 'absolute', 
+                                    bottom: -10, 
+                                    left: -15
+                                }}/>
+                            {/* </div> */}
                         </div>}
                     </Grid>
                 </Grid>}

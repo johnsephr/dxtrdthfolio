@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Components
 import Bio from '../../components/Custom/Bio/Bio'
@@ -10,22 +10,38 @@ import { makeStyles } from '@material-ui/core/styles'
 // Styles
 const useStyles = makeStyles(theme => ({
     // styles go here
-    root: {},
-    grid: {
-        padding: 15
-    },
-    text: {
-        flexGrow: 1,
-        padding: 15
+    root: {
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        marginBottom: '50px'
     }
 }))
 
 const BioContainer = props => {
     const classes = useStyles(props)
+    const [removeArrow, setRemoveArrow] = useState(false)
+
+    const handleScroll = () => {
+        if(window.pageYOffset > 20) {
+            setRemoveArrow(true)
+        } else {
+            setRemoveArrow(false)
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll)
+        return () => {
+            window.removeEventListener('scroll', handleScroll)
+        }
+    })
+
     return (
-        <Fragment>
-            <Bio />
-        </Fragment>
+        <div className={classes.root}>
+            <Bio removeArrow={removeArrow} />
+        </div>
     )
 }
 
