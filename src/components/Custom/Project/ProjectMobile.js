@@ -5,10 +5,11 @@ import { useMediaPredicate } from "react-media-hook"
 import Image from '../Utility/Image/Image'
 
 // MUI
-import { Typography, Grid } from '@material-ui/core'
+import { Typography, Grid, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 // images
+import harmonyWeb from '../../../images/harmony-web.png'
 import tnsWeb from '../../../images/tns-web.png'
 import tnsMobile from '../../../images/tns-mobile.png'
 import workMachinesWeb from '../../../images/work-machines-web.png'
@@ -60,7 +61,24 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         margin: '5px 0',
         textAlign: 'center',
-    }
+    },
+    buttons: {
+        width: '100%',
+        paddingTop: 40,
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    button: {
+        '&:hover': {
+            borderColor: 'rgba(0, 0, 0, 0.6)',
+            backgroundColor: 'transparent',
+        }
+    },
+    link: {
+        textDecoration: 'none',
+        color: 'rgba(0, 0, 0, 0.8)',
+        fontSize: '1rem',
+    },
 }))
 
 const Project = props => {
@@ -76,10 +94,10 @@ const Project = props => {
     // Component Did Mount
     useEffect(() => {
         switch (image) {
-            // case 'harmony':
-            //     setWebImage(harmonyWeb)
-            //     setMobileImage(harmonyMobile)
-            //     break
+            case 'harmony':
+                setWebImage(harmonyWeb)
+                setMobileImage(tnsMobile)
+                break
             case 'tns':
                 setWebImage(tnsWeb)
                 setMobileImage(tnsMobile)
@@ -147,32 +165,44 @@ const Project = props => {
                         <Typography variant="body1" className={classes.text} style={{ textAlign: 'justify' }}>
                             {summary}
                         </Typography>
+                        <div className={classes.buttons}>
+                            {project.website && <Button className={classes.button} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
+                            {/* {project.video && <Button variant="contained">View Demo</Button>} */}
+                        </div>
                     </div>
                 </Grid> : biggerThan700 ? <Grid item xs={12}>
-                        <div>
-                            <Typography variant="h4" className={classes.text}>
-                                {title}
-                            </Typography>
-                            <Typography variant="h6" className={classes.text} style={{ opacity: .6 }}>
-                                {roles}
-                            </Typography>
-                            <Typography variant="body1" className={classes.text} style={{ textAlign: 'justify' }}>
-                                {summary}
-                            </Typography>
+                    <div>
+                        <Typography variant="h4" className={classes.text}>
+                            {title}
+                        </Typography>
+                        <Typography variant="h6" className={classes.text} style={{ opacity: .6 }}>
+                            {roles}
+                        </Typography>
+                        <Typography variant="body1" className={classes.text} style={{ textAlign: 'justify' }}>
+                            {summary}
+                        </Typography>
+                        <div className={classes.buttons}>
+                            {project.website && <Button className={classes.button} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
+                            {/* {project.video && <Button variant="contained">View Demo</Button>} */}
                         </div>
-                    </Grid> : <Grid item xs={12}>
-                        <div>
-                            <Typography variant="h5" className={classes.textShrink}>
-                                {title}
-                            </Typography>
-                            <Typography variant="body1" className={classes.textShrink} style={{ opacity: .6 }}>
-                                {roles}
-                            </Typography>
-                            <Typography variant="body2" className={classes.textShrink} style={{ textAlign: 'justify' }}>
-                                {summary}
-                            </Typography>
-                        </div>
-                    </Grid>}
+                    </div>
+                </Grid> : <Grid item xs={12}>
+                            <div>
+                                <Typography variant="h5" className={classes.textShrink}>
+                                    {title}
+                                </Typography>
+                                <Typography variant="body1" className={classes.textShrink} style={{ opacity: .6 }}>
+                                    {roles}
+                                </Typography>
+                                <Typography variant="body2" className={classes.textShrink} style={{ textAlign: 'justify' }}>
+                                    {summary}
+                                </Typography>
+                                <div className={classes.buttons}>
+                                    {project.website && <Button className={classes.button} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
+                                    {/* {project.video && <Button variant="contained">View Demo</Button>} */}
+                                </div>
+                            </div>
+                        </Grid>}
 
             </Grid>
         </div>

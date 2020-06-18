@@ -1,13 +1,14 @@
 import React, { Fragment, useState, useEffect } from 'react'
 
-// Components
-import Image from '../Utility/Image/Image'
-
 // MUI
-import { Typography, Grid } from '@material-ui/core'
+import { Typography, Grid, Button, Modal } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
+// React Modal
+import ReactModal from 'react-modal'
+
 // images
+import harmonyWeb from '../../../images/harmony-web.png'
 import tnsWeb from '../../../images/tns-web.png'
 import tnsMobile from '../../../images/tns-mobile.png'
 import workMachinesWeb from '../../../images/work-machines-web.png'
@@ -24,6 +25,12 @@ import awesomeJobsWeb from '../../../images/awesome-jobs-web.png'
 import awesomeJobsMobile from '../../../images/awesome-jobs-mobile.png'
 import ecommerceWeb from '../../../images/ecommerce-web.png'
 import ecommerceMobile from '../../../images/ecommerce-mobile.png'
+
+// videos
+import harmonyWebVideo from '../../../videos/harmony-web.mov'
+import providerWebVideo from '../../../videos/provider-web.mp4'
+import tnsCreateVideo from '../../../videos/tns-create.mp4'
+import workMachinesVideo from '../../../videos/work-machines.mp4'
 
 
 // Styles
@@ -92,7 +99,42 @@ const useStyles = makeStyles(theme => ({
         margin: '5px 0'
     },
     buttons: {
-        width: '100%'
+        width: '100%',
+        paddingTop: 40,
+    },
+    buttonR: {
+        marginRight: 20,
+        '&:hover': {
+            borderColor: 'rgba(0, 0, 0, 0.6)',
+            backgroundColor: 'transparent',
+        }
+    },
+    buttonL: {
+        float: 'right',
+        marginLeft: 20,
+        '&:hover': {
+            borderColor: 'rgba(0, 0, 0, 0.6)',
+            backgroundColor: 'transparent',
+        }
+    },
+    link: {
+        textDecoration: 'none',
+        color: 'rgba(0, 0, 0, 0.8)',
+        fontSize: '1rem',
+    },
+    modal: {
+        position: 'absolute',
+        margin: 'auto',
+        height: 200,
+        width: 500,
+        backgroundColor: theme.palette.modal.background,
+        color: theme.palette.modal.text,
+        padding: 10,
+        borderRadius: 5
+    },
+    video: {
+        height: 180,
+        width: 280
     }
 }))
 
@@ -100,21 +142,31 @@ const Project = props => {
     const classes = useStyles(props)
     const { project, index } = props
     const { title, roles, summary, image } = project
+
+    // media state
+    const [video, setVideo] = useState(null)
     const [webImage, setWebImage] = useState(null)
     const [mobileImage, setMobileImage] = useState(null)
+
+    // functional state
+    const [modalOpen, setModalOpen] = useState(false)
 
     // Component Did Mount
     useEffect(() => {
         switch (image) {
-            // case 'harmony':
-            //     setWebImage(harmonyWeb)
-            //     setMobileImage(harmonyMobile)
-            //     break
+            case 'harmony':
+                setWebImage(harmonyWeb)
+                setMobileImage(tnsMobile)
+                setVideo(harmonyWebVideo)
+                // setMobileImage(harmonyMobile)
+                break
             case 'tns':
+                setVideo(tnsCreateVideo)
                 setWebImage(tnsWeb)
                 setMobileImage(tnsMobile)
                 break
             case 'work-machines':
+                setVideo(workMachinesVideo)
                 setWebImage(workMachinesWeb)
                 setMobileImage(workMachinesMobile)
                 break
@@ -123,6 +175,7 @@ const Project = props => {
                 setMobileImage(pressCustomerMobile)
                 break
             case 'press-provider-app':
+                setVideo(providerWebVideo)
                 setWebImage(pressProviderWeb)
                 setMobileImage(pressProviderMobile)
                 break
@@ -146,8 +199,42 @@ const Project = props => {
         }
     }, [])
 
+    // Open Modal
+    const handleModalOpen = () => {
+        setModalOpen(true)
+    }
+
+    // Close Modal
+    const handleModalClose = () => {
+        setModalOpen(false)
+    }
+
     return (
         <div className={classes.root}>
+
+            <ReactModal
+                isOpen={modalOpen}
+                shouldCloseOnEsc='true'
+                shouldCloseOnOverlayClick='true'
+                onRequestClose={() => setModalOpen(false)}
+                style={{
+                    overlay: {
+
+                    }, content: {
+                        display: 'flex'
+                    }
+                }}
+            >
+                <video autoplay>
+                    <source
+                        controls
+                        src={video}
+                        playsinline='true'
+                        preload='auto'
+                    />
+                </video>
+            </ReactModal>
+
             {index === 0 || index % 2 === 0 ?
                 <Grid
                     container
@@ -156,19 +243,20 @@ const Project = props => {
                     spacing={1}
                     className={classes.grid}
                 >
+
                     <Grid item xs={5} className={classes.grid} style={{ display: 'flex', justifyContent: 'flex-end' }}>
                         {project.image && <div className={classes.imagesContainer} style={{ transform: 'translateX(15px)' }}>
                             {/* <div className={classes.webImage}> */}
-                                {/* <Image src={webImage} height="100%" width="100%" /> */}
-                                <img src={webImage} width="100%" height="auto" className={classes.image} />
+                            {/* <Image src={webImage} height="100%" width="100%" /> */}
+                            <img src={webImage} width="100%" height="auto" className={classes.image} />
                             {/* </div> */}
                             {/* <div className={classes.mobileImage}> */}
-                                {/* <Image src={mobileImage} height="101%" width="30%" /> */}
-                                <img src={mobileImage} width="20%" height="auto" className={classes.image} style={{
-                                    position: 'absolute', 
-                                    bottom: -10, 
-                                    left: -15
-                                }}/>
+                            {/* <Image src={mobileImage} height="101%" width="30%" /> */}
+                            <img src={mobileImage} width="20%" height="auto" className={classes.image} style={{
+                                position: 'absolute',
+                                bottom: -10,
+                                left: -15
+                            }} />
                             {/* </div> */}
                         </div>}
                     </Grid>
@@ -185,8 +273,8 @@ const Project = props => {
                                 {summary}
                             </Typography>
                             <div className={classes.buttons}>
-                                <button>Link</button>
-                                <button>View Demo</button>
+                                {project.website && <Button className={classes.buttonR} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
+                                {project.video && <Button onClick={handleModalOpen} className={classes.buttonR} variant="outlined"><span className={classes.link}>View Demo</span></Button>}
                             </div>
                         </div>
                     </Grid>
@@ -208,22 +296,26 @@ const Project = props => {
                             <Typography variant="body1" className={classes.summary} style={{ textAlign: 'right' }}>
                                 {summary}
                             </Typography>
+                            <div className={classes.buttons}>
+                                {project.video && <Button onClick={handleModalOpen} className={classes.buttonL} variant="outlined"><span className={classes.link}>View Demo</span></Button>}
+                                {project.website && <Button className={classes.buttonL} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
+                            </div>
                         </div>
                     </Grid>
                     <Grid item xs={2} />
                     <Grid item xs={5} className={classes.grid} style={{ display: 'flex', justifyContent: 'flex-start' }}>
                         {project.image && <div className={classes.imagesContainer}>
                             {/* <div className={classes.webImage}> */}
-                                {/* <Image src={webImage} height="auto" width="100%" /> */}
-                                <img src={webImage} width="100%" height="auto" className={classes.image}/>
+                            {/* <Image src={webImage} height="auto" width="100%" /> */}
+                            <img src={webImage} width="100%" height="auto" className={classes.image} />
                             {/* </div> */}
                             {/* <div className={classes.mobileImage}> */}
-                                {/* <Image src={mobileImage} height="auto" width="30%" /> */}
-                                <img src={mobileImage} width="20%" height="auto" className={classes.image} style={{
-                                    position: 'absolute', 
-                                    bottom: -10, 
-                                    left: -15
-                                }}/>
+                            {/* <Image src={mobileImage} height="auto" width="30%" /> */}
+                            <img src={mobileImage} width="20%" height="auto" className={classes.image} style={{
+                                position: 'absolute',
+                                bottom: -10,
+                                left: -15
+                            }} />
                             {/* </div> */}
                         </div>}
                     </Grid>

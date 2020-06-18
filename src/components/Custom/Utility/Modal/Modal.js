@@ -18,14 +18,6 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.modal.text,
         padding: 10,
         borderRadius: 5
-    },
-    modalContent: {
-        outline: 0
-    },
-    modalHeader: {
-    },
-    button: {
-        margin: 'auto'
     }
   }))
 
@@ -42,10 +34,7 @@ const ButtonModal = props => {
     }
 
     return (
-        <div>
-            <Button type="button" onClick={handleOpen}>
-                Open Modal
-            </Button>
+        <div onClick={handleOpen}>
             <Modal
                 className={classes.modal}
                 aria-labelledby="simple-modal-title"
@@ -53,13 +42,7 @@ const ButtonModal = props => {
                 open={open}
                 onClose={handleClose}
             >
-                <div className={classes.modalContent}>
-                    <h2 id="simple-modal-title" className={classes.modalHeader}>Text in a modal</h2>
-                    <p id="simple-modal-description" className={classes.modalBody}>
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </p>
-                    {/* <Button className={classes.button}>Close</Button> */}
-                </div>
+                {props.children}
             </Modal>
         </div>
     )

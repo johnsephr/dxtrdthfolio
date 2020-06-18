@@ -4,6 +4,7 @@ import {
   Switch,
   Route
 } from "react-router-dom"
+import './app.scss'
 
 // Components / Containers
 import HomePage from './containers/HomePage/HomePage'
