@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react'
+import { useMediaPredicate } from "react-media-hook"
 
 // MUI
 import { Typography, Grid, Button, Modal } from '@material-ui/core'
@@ -8,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import ReactModal from 'react-modal'
 
 // images
+import harmonyMobile from '../../../images/harmony-mobile.png'
 import harmonyWeb from '../../../images/harmony-web.png'
 import tnsWeb from '../../../images/tns-web.png'
 import tnsMobile from '../../../images/tns-mobile.png'
@@ -27,7 +29,7 @@ import ecommerceWeb from '../../../images/ecommerce-web.png'
 import ecommerceMobile from '../../../images/ecommerce-mobile.png'
 
 // videos
-import harmonyWebVideo from '../../../videos/harmony-web.mov'
+import harmonyWebVideo from '../../../videos/harmony-web.mp4'
 import providerWebVideo from '../../../videos/provider-web.mp4'
 import tnsCreateVideo from '../../../videos/tns-create.mp4'
 import workMachinesVideo from '../../../videos/work-machines.mp4'
@@ -140,8 +142,21 @@ const useStyles = makeStyles(theme => ({
 
 const Project = props => {
     const classes = useStyles(props)
+
+    // destructure
     const { project, index } = props
     const { title, roles, summary, image } = project
+
+    // media queries
+    const biggerThan1500 = useMediaPredicate("(min-width: 1500px)")
+    const smallerThan1450 = useMediaPredicate("(max-width: 1450px)")
+    const biggerThan1200 = useMediaPredicate("(min-width: 1200px)")
+    const biggerThan1050 = useMediaPredicate("(min-width: 1050px)")
+    const biggerThan900 = useMediaPredicate("(min-width: 900px)")
+    const biggerThan815 = useMediaPredicate("(min-width: 815px)")
+    const biggerThan700 = useMediaPredicate("(min-width: 700px)")
+    const biggerThan600 = useMediaPredicate("(min-width: 600px)")
+    const biggerThan500 = useMediaPredicate("(min-width: 500px)")
 
     // media state
     const [video, setVideo] = useState(null)
@@ -156,9 +171,8 @@ const Project = props => {
         switch (image) {
             case 'harmony':
                 setWebImage(harmonyWeb)
-                setMobileImage(tnsMobile)
+                setMobileImage(harmonyMobile)
                 setVideo(harmonyWebVideo)
-                // setMobileImage(harmonyMobile)
                 break
             case 'tns':
                 setVideo(tnsCreateVideo)
@@ -219,13 +233,26 @@ const Project = props => {
                 onRequestClose={() => setModalOpen(false)}
                 style={{
                     overlay: {
-
+                        display: 'flex',
+                        justifyContent: 'center',
                     }, content: {
-                        display: 'flex'
+                        // maxWidth: 1000,
+                        right: 'unset',
+                        bottom: 'unset',
+                        overflow: 'hidden',
+                        maxHeight: 840,
+                        left: '50%',
+                        top: '50%',
+                        transform: 'translate(-50%, -50%)'
                     }
                 }}
             >
-                <video autoplay>
+                <video
+                    autoPlay
+                    height={biggerThan1500 ? '800px'
+                        : !smallerThan1450 ? '700px' : '0px'
+                    }
+                >
                     <source
                         controls
                         src={video}
@@ -273,7 +300,7 @@ const Project = props => {
                                 {summary}
                             </Typography>
                             <div className={classes.buttons}>
-                                {project.website && <Button className={classes.buttonR} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
+                                {project.website && <Button className={classes.buttonR} variant="outlined"><a target="_blank" className={classes.link} href={project.website}>View Website</a></Button>}
                                 {project.video && <Button onClick={handleModalOpen} className={classes.buttonR} variant="outlined"><span className={classes.link}>View Demo</span></Button>}
                             </div>
                         </div>
@@ -298,7 +325,7 @@ const Project = props => {
                             </Typography>
                             <div className={classes.buttons}>
                                 {project.video && <Button onClick={handleModalOpen} className={classes.buttonL} variant="outlined"><span className={classes.link}>View Demo</span></Button>}
-                                {project.website && <Button className={classes.buttonL} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
+                                {project.website && <Button className={classes.buttonL} variant="outlined"><a target="_blank" className={classes.link} href={project.website}>View Website</a></Button>}
                             </div>
                         </div>
                     </Grid>

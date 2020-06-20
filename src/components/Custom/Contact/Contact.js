@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center'
     },
     icon: {
+        color: 'rgba(0, 0, 0, 0.8)',
         opacity: .6,
         '&:hover': {
             opacity: .75

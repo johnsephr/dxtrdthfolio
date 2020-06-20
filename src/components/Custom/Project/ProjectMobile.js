@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useMediaPredicate } from "react-media-hook"
 
-// Components
-import Image from '../Utility/Image/Image'
+// React Modal
+import ReactModal from 'react-modal'
 
 // MUI
 import { Typography, Grid, Button } from '@material-ui/core'
@@ -27,6 +27,11 @@ import awesomeJobsMobile from '../../../images/awesome-jobs-mobile.png'
 import ecommerceWeb from '../../../images/ecommerce-web.png'
 import ecommerceMobile from '../../../images/ecommerce-mobile.png'
 
+// videos
+import harmonyWebVideo from '../../../videos/harmony-web.mp4'
+import providerWebVideo from '../../../videos/provider-web.mp4'
+import tnsCreateVideo from '../../../videos/tns-create.mp4'
+import workMachinesVideo from '../../../videos/work-machines.mp4'
 
 // Styles
 const useStyles = makeStyles(theme => ({
@@ -68,7 +73,14 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'center'
     },
-    button: {
+    buttonL: {
+        '&:hover': {
+            borderColor: 'rgba(0, 0, 0, 0.6)',
+            backgroundColor: 'transparent',
+        }
+    },
+    buttonR: {
+        marginLeft: 10,
         '&:hover': {
             borderColor: 'rgba(0, 0, 0, 0.6)',
             backgroundColor: 'transparent',
@@ -79,17 +91,51 @@ const useStyles = makeStyles(theme => ({
         color: 'rgba(0, 0, 0, 0.8)',
         fontSize: '1rem',
     },
+    modal: {
+        position: 'absolute',
+        margin: 'auto',
+        height: 200,
+        width: 500,
+        backgroundColor: theme.palette.modal.background,
+        color: theme.palette.modal.text,
+        padding: 10,
+        borderRadius: 5
+    },
+    video: {
+        height: 180,
+        width: 280
+    }
 }))
 
 const Project = props => {
     const classes = useStyles(props)
-    const biggerThan1000 = useMediaPredicate("(min-width: 1000px)")
-    const smallerThan1450 = useMediaPredicate("(max-width: 1450px)")
-    const biggerThan700 = useMediaPredicate("(min-width: 700px)")
+
+    // destructure
     const { project, index, array } = props
     const { title, roles, summary, image } = project
+
+    // media queries
+    const biggerThan1500 = useMediaPredicate("(min-width: 1500px)")
+    const smallerThan1450 = useMediaPredicate("(max-width: 1450px)")
+    const biggerThan1300 = useMediaPredicate("(min-width: 1300px)")
+    const biggerThan1200 = useMediaPredicate("(min-width: 1200px)")
+    const biggerThan1050 = useMediaPredicate("(min-width: 1050px)")
+    const biggerThan1000 = useMediaPredicate("(min-width: 1000px)")
+    const biggerThan900 = useMediaPredicate("(min-width: 900px)")
+    const biggerThan815 = useMediaPredicate("(min-width: 815px)")
+    const biggerThan700 = useMediaPredicate("(min-width: 700px)")
+    const biggerThan600 = useMediaPredicate("(min-width: 600px)")
+    const biggerThan550 = useMediaPredicate("(min-width: 550px)")
+    const biggerThan500 = useMediaPredicate("(min-width: 500px)")
+    const biggerThan375 = useMediaPredicate("(min-width: 375px)")
+
+    // media state
+    const [video, setVideo] = useState(null)
     const [webImage, setWebImage] = useState(null)
     const [mobileImage, setMobileImage] = useState(null)
+
+    // functional state
+    const [modalOpen, setModalOpen] = useState(false)
 
     // Component Did Mount
     useEffect(() => {
@@ -97,14 +143,17 @@ const Project = props => {
             case 'harmony':
                 setWebImage(harmonyWeb)
                 setMobileImage(tnsMobile)
+                setVideo(harmonyWebVideo)
                 break
             case 'tns':
                 setWebImage(tnsWeb)
                 setMobileImage(tnsMobile)
+                setVideo(tnsCreateVideo)
                 break
             case 'work-machines':
                 setWebImage(workMachinesWeb)
                 setMobileImage(workMachinesMobile)
+                setVideo(workMachinesVideo)
                 break
             case 'press-customer-app':
                 setWebImage(pressCustomerWeb)
@@ -113,6 +162,7 @@ const Project = props => {
             case 'press-provider-app':
                 setWebImage(pressProviderWeb)
                 setMobileImage(pressProviderMobile)
+                setVideo(providerWebVideo)
                 break
             case 'rhc-consulting':
                 setWebImage(rhcConsultingWeb)
@@ -134,9 +184,65 @@ const Project = props => {
         }
     }, [])
 
+    // Open Modal
+    const handleModalOpen = () => {
+        setModalOpen(true)
+    }
+
+    // Close Modal
+    const handleModalClose = () => {
+        setModalOpen(false)
+    }
+
     return (
         // <div className={array != undefined && index === (array.length - 1) ? classes.rootLast : classes.root}>
         <div className={classes.root}>
+
+            <ReactModal
+                isOpen={modalOpen}
+                shouldCloseOnEsc='true'
+                shouldCloseOnOverlayClick='true'
+                onRequestClose={() => setModalOpen(false)}
+                style={{
+                    overlay: {
+                        display: 'flex',
+                        justifyContent: 'center',
+                    }, content: {
+                        // maxWidth: 1000,
+                        right: 'unset',
+                        bottom: 'unset',
+                        overflow: 'hidden',
+                        maxHeight: 839,
+                        left: '50%',
+                        top: '50%',
+                        transform: 'translate(-50%, -50%)'
+                    }
+                }}
+            >
+                <video
+                    autoPlay
+                    height={biggerThan1300 ? '680px'
+                        : biggerThan1200 ? '600px'
+                            : biggerThan1050 ? '550px'
+                                : biggerThan1000 ? '520px'
+                                    : biggerThan900 ? '465px'
+                                        : biggerThan815 ? '420px'
+                                            : biggerThan700 ? '350px'
+                                                : biggerThan600 ? '300px'
+                                                    : biggerThan550 ? '270px'
+                                                        : biggerThan500 ? '240px'
+                                                            : biggerThan375 ? '180px' : '200px'
+                    }
+                >
+                    <source
+                        controls
+                        src={video}
+                        playsinline='true'
+                        preload='auto'
+                    />
+                </video>
+            </ReactModal>
+
             <Grid
                 container
                 direction='row'
@@ -166,8 +272,8 @@ const Project = props => {
                             {summary}
                         </Typography>
                         <div className={classes.buttons}>
-                            {project.website && <Button className={classes.button} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
-                            {/* {project.video && <Button variant="contained">View Demo</Button>} */}
+                            {project.website && <Button className={classes.buttonL} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
+                            {project.video && <Button onClick={handleModalOpen} className={classes.buttonR} variant="outlined"><span className={classes.link}>View Demo</span></Button>}
                         </div>
                     </div>
                 </Grid> : biggerThan700 ? <Grid item xs={12}>
@@ -182,8 +288,8 @@ const Project = props => {
                             {summary}
                         </Typography>
                         <div className={classes.buttons}>
-                            {project.website && <Button className={classes.button} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
-                            {/* {project.video && <Button variant="contained">View Demo</Button>} */}
+                            {project.website && <Button className={classes.buttonL} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
+                            {project.video && <Button onClick={handleModalOpen} className={classes.buttonR} variant="outlined"><span className={classes.link}>View Demo</span></Button>}
                         </div>
                     </div>
                 </Grid> : <Grid item xs={12}>
@@ -198,8 +304,8 @@ const Project = props => {
                                     {summary}
                                 </Typography>
                                 <div className={classes.buttons}>
-                                    {project.website && <Button className={classes.button} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
-                                    {/* {project.video && <Button variant="contained">View Demo</Button>} */}
+                                    {project.website && <Button className={classes.buttonL} variant="outlined"><a className={classes.link} href={project.website}>View Website</a></Button>}
+                                    {project.video && <Button onClick={handleModalOpen} className={classes.buttonR} variant="outlined"><span className={classes.link}>View Demo</span></Button>}
                                 </div>
                             </div>
                         </Grid>}
