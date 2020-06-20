@@ -230,8 +230,8 @@ const Project = props => {
 
             <ReactModal
                 isOpen={modalOpen}
-                shouldCloseOnEsc='true'
-                shouldCloseOnOverlayClick='true'
+                shouldCloseOnEsc={true}
+                shouldCloseOnOverlayClick={true}
                 onRequestClose={() => setModalOpen(false)}
                 style={{
                     overlay: {

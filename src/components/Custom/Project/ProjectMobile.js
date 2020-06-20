@@ -9,6 +9,7 @@ import { Typography, Grid, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 // images
+import harmonyMobile from '../../../images/harmony-mobile.png'
 import harmonyWeb from '../../../images/harmony-web.png'
 import tnsWeb from '../../../images/tns-web.png'
 import tnsMobile from '../../../images/tns-mobile.png'
@@ -143,7 +144,7 @@ const Project = props => {
         switch (image) {
             case 'harmony':
                 setWebImage(harmonyWeb)
-                setMobileImage(tnsMobile)
+                setMobileImage(harmonyMobile)
                 setVideo(harmonyWebVideo)
                 break
             case 'tns':
@@ -202,8 +203,8 @@ const Project = props => {
 
             <ReactModal
                 isOpen={modalOpen}
-                shouldCloseOnEsc='true'
-                shouldCloseOnOverlayClick='true'
+                shouldCloseOnEsc={true}
+                shouldCloseOnOverlayClick={true}
                 onRequestClose={() => setModalOpen(false)}
                 style={{
                     overlay: {
