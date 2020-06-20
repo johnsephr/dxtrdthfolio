@@ -31,6 +31,7 @@ import ecommerceMobile from '../../../images/ecommerce-mobile.png'
 // videos
 import harmonyWebVideo from '../../../videos/harmony-web.mp4'
 import providerWebVideo from '../../../videos/provider-web.mp4'
+import customerWebVideo from '../../../videos/customer-web.mp4'
 import tnsCreateVideo from '../../../videos/tns-create.mp4'
 import workMachinesVideo from '../../../videos/work-machines.mp4'
 
@@ -187,11 +188,12 @@ const Project = props => {
             case 'press-customer-app':
                 setWebImage(pressCustomerWeb)
                 setMobileImage(pressCustomerMobile)
+                setVideo(customerWebVideo)
                 break
             case 'press-provider-app':
-                setVideo(providerWebVideo)
                 setWebImage(pressProviderWeb)
                 setMobileImage(pressProviderMobile)
+                setVideo(providerWebVideo)
                 break
             case 'rhc-consulting':
                 setWebImage(rhcConsultingWeb)

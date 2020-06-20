@@ -32,7 +32,7 @@ const work = [
         roles: ['Front-End Development'],
         icons: ['react'],
         image: 'press-customer-app',
-        video: 'press',
+        video: 'press-customer',
         website: 'https://www.presscleaners.com/',
     },
     {
@@ -41,7 +41,7 @@ const work = [
         roles: ['Front-End Development'],
         icons: ['react'],
         image: 'press-provider-app',
-        video: '',
+        video: 'press-provider',
         website: 'https://www.presscleaners.com/',
     },
     {
@@ -50,7 +50,7 @@ const work = [
         roles: ['UI Design | Front-End Development'],
         icons: ['angular'],
         image: 'rhc-consulting',
-        video: '',
+        // video: '',
         website: 'http://www.rhcconsult.com/',
     },
 ]
