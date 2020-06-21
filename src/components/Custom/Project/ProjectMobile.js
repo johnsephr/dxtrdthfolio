@@ -113,11 +113,11 @@ const Project = props => {
     const classes = useStyles(props)
 
     // destructure
-    const { project, index, array } = props
+    const { project } = props
     const { title, roles, summary, image } = project
 
     // media queries
-    const biggerThan1500 = useMediaPredicate("(min-width: 1500px)")
+    // const biggerThan1500 = useMediaPredicate("(min-width: 1500px)")
     const smallerThan1450 = useMediaPredicate("(max-width: 1450px)")
     const biggerThan1300 = useMediaPredicate("(min-width: 1300px)")
     const biggerThan1200 = useMediaPredicate("(min-width: 1200px)")
@@ -182,19 +182,16 @@ const Project = props => {
             case 'ecommerce':
                 setWebImage(ecommerceWeb)
                 setMobileImage(ecommerceMobile)
+                break
             default:
-                console.log('couldn\'t find an image')
+                // console.log('couldn\'t find an image')
+                break
         }
     }, [])
 
     // Open Modal
     const handleModalOpen = () => {
         setModalOpen(true)
-    }
-
-    // Close Modal
-    const handleModalClose = () => {
-        setModalOpen(false)
     }
 
     return (
@@ -255,8 +252,8 @@ const Project = props => {
             >
                 <Grid item xs={12} className={classes.grid} style={{ marginBottom: '20px' }}>
                     {project.image && <div className={classes.imagesContainer}>
-                        <img src={webImage} width="100%" height="auto" className={classes.image} />
-                        <img src={mobileImage} width="20%" height="auto" className={classes.image} style={{
+                        <img src={webImage} width="100%" height="auto" alt="" className={classes.image} />
+                        <img src={mobileImage} width="20%" height="auto" alt="" className={classes.image} style={{
                             position: 'absolute',
                             bottom: -10,
                             left: -15

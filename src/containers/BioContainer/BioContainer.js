@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Bio from '../../components/Custom/Bio/Bio'
 
 // MUI
-import { Typography, Grid } from '@material-ui/core'
+// import { Typography, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 // Styles

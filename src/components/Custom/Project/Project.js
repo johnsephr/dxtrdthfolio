@@ -1,8 +1,8 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useMediaPredicate } from "react-media-hook"
 
 // MUI
-import { Typography, Grid, Button, Modal } from '@material-ui/core'
+import { Typography, Grid, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 // React Modal
@@ -151,13 +151,13 @@ const Project = props => {
     // media queries
     const biggerThan1500 = useMediaPredicate("(min-width: 1500px)")
     const smallerThan1450 = useMediaPredicate("(max-width: 1450px)")
-    const biggerThan1200 = useMediaPredicate("(min-width: 1200px)")
-    const biggerThan1050 = useMediaPredicate("(min-width: 1050px)")
-    const biggerThan900 = useMediaPredicate("(min-width: 900px)")
-    const biggerThan815 = useMediaPredicate("(min-width: 815px)")
-    const biggerThan700 = useMediaPredicate("(min-width: 700px)")
-    const biggerThan600 = useMediaPredicate("(min-width: 600px)")
-    const biggerThan500 = useMediaPredicate("(min-width: 500px)")
+    // const biggerThan1200 = useMediaPredicate("(min-width: 1200px)")
+    // const biggerThan1050 = useMediaPredicate("(min-width: 1050px)")
+    // const biggerThan900 = useMediaPredicate("(min-width: 900px)")
+    // const biggerThan815 = useMediaPredicate("(min-width: 815px)")
+    // const biggerThan700 = useMediaPredicate("(min-width: 700px)")
+    // const biggerThan600 = useMediaPredicate("(min-width: 600px)")
+    // const biggerThan500 = useMediaPredicate("(min-width: 500px)")
 
     // media state
     const [video, setVideo] = useState(null)
@@ -210,19 +210,15 @@ const Project = props => {
             case 'ecommerce':
                 setWebImage(ecommerceWeb)
                 setMobileImage(ecommerceMobile)
+                break
             default:
-                console.log('couldn\'t find an image')
+                break
         }
     }, [])
 
     // Open Modal
     const handleModalOpen = () => {
         setModalOpen(true)
-    }
-
-    // Close Modal
-    const handleModalClose = () => {
-        setModalOpen(false)
     }
 
     return (
@@ -277,11 +273,11 @@ const Project = props => {
                         {project.image && <div className={classes.imagesContainer} style={{ transform: 'translateX(15px)' }}>
                             {/* <div className={classes.webImage}> */}
                             {/* <Image src={webImage} height="100%" width="100%" /> */}
-                            <img src={webImage} width="100%" height="auto" className={classes.image} />
+                            <img src={webImage} width="100%" height="auto" alt="" className={classes.image} />
                             {/* </div> */}
                             {/* <div className={classes.mobileImage}> */}
                             {/* <Image src={mobileImage} height="101%" width="30%" /> */}
-                            <img src={mobileImage} width="20%" height="auto" className={classes.image} style={{
+                            <img src={mobileImage} width="20%" height="auto" alt="" className={classes.image} style={{
                                 position: 'absolute',
                                 bottom: -10,
                                 left: -15
@@ -302,7 +298,7 @@ const Project = props => {
                                 {summary}
                             </Typography>
                             <div className={classes.buttons}>
-                                {project.website && <Button className={classes.buttonR} variant="outlined"><a target="_blank" className={classes.link} href={project.website}>View Website</a></Button>}
+                                {project.website && <Button className={classes.buttonR} variant="outlined"><a target="_blank" rel="noopener noreferrer" className={classes.link} href={project.website}>View Website</a></Button>}
                                 {project.video && <Button onClick={handleModalOpen} className={classes.buttonR} variant="outlined"><span className={classes.link}>View Demo</span></Button>}
                             </div>
                         </div>
@@ -327,7 +323,7 @@ const Project = props => {
                             </Typography>
                             <div className={classes.buttons}>
                                 {project.video && <Button onClick={handleModalOpen} className={classes.buttonL} variant="outlined"><span className={classes.link}>View Demo</span></Button>}
-                                {project.website && <Button className={classes.buttonL} variant="outlined"><a target="_blank" className={classes.link} href={project.website}>View Website</a></Button>}
+                                {project.website && <Button className={classes.buttonL} variant="outlined"><a target="_blank" rel="noopener noreferrer" className={classes.link} href={project.website}>View Website</a></Button>}
                             </div>
                         </div>
                     </Grid>
@@ -336,11 +332,11 @@ const Project = props => {
                         {project.image && <div className={classes.imagesContainer}>
                             {/* <div className={classes.webImage}> */}
                             {/* <Image src={webImage} height="auto" width="100%" /> */}
-                            <img src={webImage} width="100%" height="auto" className={classes.image} />
+                            <img src={webImage} width="100%" height="auto" alt="" className={classes.image} />
                             {/* </div> */}
                             {/* <div className={classes.mobileImage}> */}
                             {/* <Image src={mobileImage} height="auto" width="30%" /> */}
-                            <img src={mobileImage} width="20%" height="auto" className={classes.image} style={{
+                            <img src={mobileImage} width="20%" height="auto" alt="" className={classes.image} style={{
                                 position: 'absolute',
                                 bottom: -10,
                                 left: -15

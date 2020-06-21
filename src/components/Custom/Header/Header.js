@@ -1,10 +1,8 @@
 import React, { Fragment } from 'react'
 import { useMediaPredicate } from "react-media-hook"
-import { Link } from "react-router-dom"
-
 
 // MUI
-import { AppBar, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Typography } from '@material-ui/core'
 // import MenuIcon from '@material-ui/icons/Menu'
 import { makeStyles } from '@material-ui/core/styles'
 

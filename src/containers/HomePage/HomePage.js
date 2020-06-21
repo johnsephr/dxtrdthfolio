@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useMediaPredicate } from "react-media-hook"
 
 // Components
@@ -7,7 +7,7 @@ import WorkContainer from '../WorkContainer/WorkContainer'
 import ProjectsContainer from '../ProjectsContainer/ProjectsContainer'
 
 // MUI
-import { Typography, Grid } from '@material-ui/core'
+// import { Typography, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 // Styles

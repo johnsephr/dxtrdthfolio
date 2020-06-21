@@ -1,10 +1,9 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useMediaPredicate } from "react-media-hook"
 
 // MUI
 import { makeStyles } from '@material-ui/core/styles'
-import { Grid, Typography, Link } from '@material-ui/core'
-import Icon from '@material-ui/core/Icon'
+import { Grid, Link } from '@material-ui/core'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import MailOutlineIcon from '@material-ui/icons/MailOutline'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
