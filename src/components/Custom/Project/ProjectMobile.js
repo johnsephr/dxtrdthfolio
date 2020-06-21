@@ -187,7 +187,7 @@ const Project = props => {
                 // console.log('couldn\'t find an image')
                 break
         }
-    }, [])
+    }, [image])
 
     // Open Modal
     const handleModalOpen = () => {

@@ -214,7 +214,7 @@ const Project = props => {
             default:
                 break
         }
-    }, [])
+    }, [image])
 
     // Open Modal
     const handleModalOpen = () => {
