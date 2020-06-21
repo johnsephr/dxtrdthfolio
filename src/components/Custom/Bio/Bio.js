@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { useMediaPredicate } from "react-media-hook"
 
 // MUI
 import { Typography } from '@material-ui/core'
@@ -25,12 +26,14 @@ const useStyles = makeStyles(theme => ({
 const Bio = props => {
     const classes = useStyles(props)
     const { removeArrow } = props
+    const biggerThan500 = useMediaPredicate("(min-width: 500px)")
+
     return (
         <Fragment>
             <Typography variant="h6" className={classes.text}>
                 {bio}
             </Typography>
-            <div className="animated infinite bounce slow" style={{ margin: '0 auto 30px auto' }}>
+            <div className="animated infinite bounce slow" style={biggerThan500 ? { margin: '0 auto 30px auto' } : { margin: '0 auto 120px auto' }}>
                 <ExpandMoreIcon className={removeArrow ? classes.removeArrow : null} style={{
                     color: '#888',
                     fontSize: 40,
